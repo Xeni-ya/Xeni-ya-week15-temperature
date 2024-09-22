@@ -11,15 +11,37 @@
 // Выведите информацию с погодой в разных городах, а также максимальной и минимальной температурой на экран
 
 
-let cities = ['Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург', 'Казань'];
-const temperatures = [];
+let cities = ['Москва', 'Санкт-Петербург', 'Нью-Йорк', 'Токио'];
+let temperatures = [];
 
 for (let city of cities) {
-  let cityTemperature = prompt(`Введите температуру для города ${city}:`);
+  let temperature = prompt(`Введите температуру для города ${city}`);
+  temperatures.push(temperature);
 }
 
-const resultDiv = document.querySelector('.container');
+// const parentElement = document.getElementById('parent');
+// const newElement = document.createElement('div');
+// newElement.textContent = 'Новый элемент';
+// parentElement.append(newElement);
 
-const result = document.createElement('p');
-result.textContent = `Температура в ${cities[0]}: ${temperatures}`;
-resultDiv.append(result);
+let list = document.createElement('ul');
+for (let i = 0; i < cities.length; i++) {
+  const item = document.createElement('li');
+  item.textContent = (`Температура в городе ${cities[i]}: ${temperatures[i]}°C`);
+  list.append(item);
+}
+
+let maxTemperature = Math.max(...temperatures);
+let minTemperature = Math.min(...temperatures);
+
+const resultDiv = document.querySelector('.container');
+resultDiv.append(list);
+
+const innerDiv = document.querySelector('.inner');
+const maxTemp = document.createElement('p');
+maxTemp.textContent = (`Максимальная температура: ${maxTemperature}°C`);
+innerDiv.append(maxTemp);
+
+const minTemp = document.createElement('p');
+minTemp.textContent = (`Минимальная температура: ${minTemperature}°C`);
+innerDiv.append(minTemp);
