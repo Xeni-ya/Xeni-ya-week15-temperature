@@ -15,7 +15,10 @@ let cities = ['Москва', 'Санкт-Петербург', 'Нью-Йорк'
 let temperatures = [];
 
 for (let city of cities) {
-  let temperature = prompt(`Введите температуру для города ${city}`);
+  let temperature = parseFloat(prompt(`Введите температуру для города ${city}`));
+  if (isNaN(temperature)){
+  alert("Это не цифра :( Попробуйте снова.")
+  }
   temperatures.push(temperature);
 }
 
